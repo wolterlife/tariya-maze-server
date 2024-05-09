@@ -1,6 +1,5 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Order} from './Order';
-import {Role} from './Role';
 import {Reservation} from './Reservation';
 
 @Entity()
@@ -26,12 +25,12 @@ export class User {
   @Column()
   dateOfBirth: string;
 
-  @OneToMany(() => Role, (role) => role.id)
-  role_id: Role[];
+  @Column()
+  roles: string;
 
-  @OneToMany(() => Order, (order) => order.user)
+  @OneToMany(() => Order, (order) => order.user, {nullable: true})
   orders: Order[]
 
-  @OneToMany(() => Reservation, (reservation) => reservation.user)
+  @OneToMany(() => Reservation, (reservation) => reservation.user, {nullable: true})
   reservations: Reservation[]
 }

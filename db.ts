@@ -3,7 +3,6 @@ import {Discount} from './src/models/Discount';
 import {News} from './src/models/News';
 import {Menu} from './src/models/Menu';
 import {Order} from './src/models/Order';
-import {Role} from './src/models/Role';
 import {Reservation} from './src/models/Reservation';
 import {User} from './src/models/User';
 import {OrderMenu} from './src/models/OrderMenu';
@@ -15,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: "admin",
   password: "password",
   database: "tariya-maze",
-  entities: [Discount, Menu, News, Order, OrderMenu, Reservation, Role, User],
+  entities: [Discount, Menu, News, Order, OrderMenu, Reservation, User],
   synchronize: true,
   options: {
     trustServerCertificate: true,
