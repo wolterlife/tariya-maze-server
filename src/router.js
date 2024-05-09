@@ -4,6 +4,7 @@ const router = express.Router();
 const newsController = require("./controllers/NewsController");
 const discountController = require("./controllers/DiscountController");
 const userController = require("./controllers/UserController");
+const reservationController = require("./controllers/ReservationController");
 
 router.get('/', async (req, res) => {
   res.json("home");
@@ -21,6 +22,9 @@ router.get('/users', userController.getUsers );          //  GET все Поль
 router.post('/users', userController.createUser)       //  POST Пользователя
 router.delete("/users/:id", userController.deleteUser) //  DELETE Пользователя по ID
 
+router.get('/reservations', reservationController.getReservations );          //  GET все Пользователи
+router.post('/reservations', reservationController.createReservation)       //  POST Пользователя
+router.delete("/reservations/:id", reservationController.deleteReservation) //  DELETE Пользователя по ID
 
 
 
