@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {Order} from './Order';
 import {Menu} from './Menu';
 
@@ -8,17 +8,12 @@ export class OrderMenu {
   id: number;
 
   @Column()
-  date: string;
-
-  @Column()
-  time: string;
-
-  @Column()
   count: number;
 
   @ManyToOne(() => Order, (order) => order.id, {onDelete: 'CASCADE'})
   order: Order;
 
-  @OneToOne(() => Menu, (menu) => menu.id)
-  menu_id: Menu;
+  @OneToOne(() => Menu, (menu) => menu.item_id)
+  @JoinColumn()
+  item_id: Menu
 }

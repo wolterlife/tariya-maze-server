@@ -10,7 +10,7 @@ export class Menu {
   name: string;
 
   @Column()
-  price: string;
+  price: number;
 
   @Column()
   val: string;
@@ -20,4 +20,7 @@ export class Menu {
 
   @Column()
   imgLink: string;
+
+  @OneToOne(() => OrderMenu, (orderMenu) => orderMenu.item_id)
+  item_id: OrderMenu
 }
