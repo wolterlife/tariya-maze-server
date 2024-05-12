@@ -12,6 +12,12 @@ export class Reservation {
   @Column()
   time: string;
 
+  @Column()
+  count: number;
+
+  @Column()
+  isActive: boolean;
+
   @ManyToOne(() => User, (user) => user.reservations, {onDelete: 'CASCADE'})
   user: User;
 }
