@@ -12,7 +12,6 @@ exports.getNews = async function (req: Request, res: Response) {
 
 exports.createNews = async function (req: Request, res: Response) {
   const news = new News();
-  console.log(req.body)
   news.description = req.body.description
   news.title1 = req.body.title1
   news.title2 = req.body.title2
@@ -41,7 +40,6 @@ exports.updateNews = async function (req: Request, res: Response) {
     res.status(404).json({msg: "Указанная новость не найдена"})
     return
   }
-
   AppDataSource.getRepository(News).merge(news, req.body)
   res.json(await AppDataSource.getRepository(News).save(news));
 }

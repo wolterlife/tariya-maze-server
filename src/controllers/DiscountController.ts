@@ -11,11 +11,27 @@ exports.getDiscounts = async function (req: Request, res: Response) {
 }
 
 exports.createDiscount = async function (req: Request, res: Response) {
-  const discount = new Discount();
-  discount.description = req.body.description
-  discount.name = req.body.name
-  res.json(await AppDataSource.getRepository(Discount).save(discount))
+    const discount = new Discount();
+    discount.description = req.body.description
+    discount.name = req.body.name
+    res.json(await AppDataSource.getRepository(Discount).save(discount))
 }
+
+exports.updateDiscount = async function (req: Request, res: Response) {
+  const discount = await AppDataSource
+    .getRepository(Discount)
+    .createQueryBuilder("discount")
+    .where("discount.id = :id", {id: req.params.id})
+    .getOne()
+  if (!discount) {
+    res.status(404).json({msg: "Указанная скидка не найдена"})
+    return
+  }
+
+  AppDataSource.getRepository(Discount).merge(discount, req.body)
+  res.json(await AppDataSource.getRepository(Discount).save(discount));
+}
+
 
 exports.deleteDiscount = async function (req: Request, res: Response) {
   const discount = await AppDataSource

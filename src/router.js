@@ -21,6 +21,8 @@ router.put("/news/:id", newsController.updateNews) //  PUT Новость по I
 router.get('/discounts', discountController.getDiscounts);         //  GET все Скидки
 router.post('/discounts', discountController.createDiscount)       //  POST Скидку
 router.delete("/discounts/:id", discountController.deleteDiscount) //  DELETE Скидку по ID
+router.put("/discounts/:id", discountController.updateDiscount) //  PUT Новость по ID
+
 
 router.get('/users', userController.getUsers);         //  GET все Пользователи
 router.post('/users', userController.createUser)       //  POST Пользователя

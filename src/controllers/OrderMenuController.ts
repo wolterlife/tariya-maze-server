@@ -13,11 +13,11 @@ exports.getOrderMenu = async function (req: Request, res: Response) {
 }
 
 exports.createOrderMenu = async function (req: Request, res: Response) {
-  const orderMenu = new OrderMenu();
-  orderMenu.order = req.body.order
-  orderMenu.item_id = req.body.item_id
-  orderMenu.count = req.body.count
-  res.json(await AppDataSource.getRepository(OrderMenu).save(orderMenu))
+    const orderMenu = new OrderMenu();
+    orderMenu.order = req.body.order
+    orderMenu.item_id = req.body.item_id
+    orderMenu.count = req.body.count
+    res.json(await AppDataSource.getRepository(OrderMenu).save(orderMenu))
 }
 
 exports.deleteOrderMenu = async function (req: Request, res: Response) {
