@@ -26,6 +26,12 @@ export class User {
   dateOfBirth: string;
 
   @Column()
+  mail: string;
+
+  @Column()
+  destination: string;
+
+  @Column()
   roles: string;
 
   @OneToMany(() => Order, (order) => order.user, {nullable: true})

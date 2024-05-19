@@ -20,4 +20,5 @@ AppDataSource.initialize() // init db
 app.listen(port, () => {console.log(`App listen on port ${port}!`)})
 
 // TODO: Где связь с юзером сделать проверку, иначе происходят краши
+// TODO: Проверить роли 'admin user' на фронте, но скорее ввсего всё нормально
 

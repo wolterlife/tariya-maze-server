@@ -11,6 +11,16 @@ exports.getOrders = async function (req: Request, res: Response) {
   res.json(orders);
 }
 
+exports.getOrdersByUserId = async function (req: Request, res: Response) {
+  const orders = await AppDataSource
+    .getRepository(Order)
+    .createQueryBuilder("orders")
+    .leftJoinAndSelect("orders.user", "user")
+    .where("orders.user.id = :id", {id: req.params.id})
+    .getMany()
+  res.json(orders);
+}
+
 exports.createOrder = async function (req: Request, res: Response) {
   const order = new Order();
   order.price = req.body.price

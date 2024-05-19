@@ -11,6 +11,17 @@ exports.getReservations = async function (req: Request, res: Response) {
   res.json(reservation);
 }
 
+exports.getReservationsByUserId = async function (req: Request, res: Response) {
+  const reservation = await AppDataSource
+    .getRepository(Reservation)
+    .createQueryBuilder("reservation")
+    .leftJoinAndSelect("reservation.user", "user")
+    .where("reservation.user.id = :id", {id: req.params.id})
+    .getMany()
+  res.json(reservation);
+}
+
+
 exports.createReservation = async function (req: Request, res: Response) {
   const reservation = new Reservation();
   reservation.date = req.body.date
