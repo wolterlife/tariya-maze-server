@@ -43,3 +43,6 @@ exports.deleteReservation = async function (req: Request, res: Response) {
     res.json(reservation)
   } else res.status(404).json({msg: "Бронь не найдена"});
 }
+
+
+

@@ -82,6 +82,7 @@ exports.registration = async function (req: Request, res: Response) {
   })
 }
 
+
 exports.isAdminById = async function (req: Request, res: Response) {
   const user = await AppDataSource
     .getRepository(User)
@@ -90,5 +91,25 @@ exports.isAdminById = async function (req: Request, res: Response) {
     .getOne();
   if (user && user.roles.includes('admin')) res.json(true);
   else res.json(false);
+}
+
+exports.updatePass = async function (req: Request, res: Response) {
+  const user = await AppDataSource
+    .getRepository(User)
+    .createQueryBuilder("user")
+    .where("user.id = :id", {id: req.params.id})
+    .getOne()
+  if (!user) {
+    res.status(404).json({msg: "Указанный пользователь не найден"})
+    return
+  }
+
+  const isPassValid = bcrypt.compareSync(req.body.password, user.password);
+  if (isPassValid) {
+    console.log(user, req.body.newPass)
+    user.password = bcrypt.hashSync(req.body.newPass, 7)
+    await AppDataSource.getRepository(User).save(user)
+    res.status(200).json({msg: "Успешно"});
+  } else res.status(401).json({msg: "Неправильный пароль"})
 }
 

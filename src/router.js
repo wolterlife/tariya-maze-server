@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 router.post('/login', authController.login)                 //  Авторизация
 router.post('/registration', authController.registration)   //  Регистрация
 router.get('/auth/:id', authController.isAdminById)         //  Является ли администратором
+router.put('/pass/:id', authMiddleware(["user", "admin"]), authController.updatePass)         //  Смена пароля
 
 router.get('/news', newsController.getNews);                                             //  GET все Новости
 router.post('/news', authMiddleware(["admin"]), newsController.createNews)       //  POST Новость
@@ -32,6 +33,7 @@ router.put("/discounts/:id", authMiddleware(["admin"]), discountController.updat
 
 router.get('/users', authMiddleware(["admin"]), userController.getUsers);         //  GET все Пользователи
 router.delete("/users/:id", authMiddleware(["admin"]), userController.deleteUser) //  DELETE Пользователя по ID
+router.put("/users/:id", authMiddleware(["user", "admin"]), userController.updateUser) //  PUT Пользователя по ID
 
 router.get('/reservations', authMiddleware(["admin"]), reservationController.getReservations);                     //  GET все Брони
 router.get('/reservations/:id', authMiddleware(["user", "admin"]), reservationController.getReservationsByUserId); //  GET все Брони по ID User

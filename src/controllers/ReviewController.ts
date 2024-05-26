@@ -12,7 +12,7 @@ exports.getReview = async function (req: Request, res: Response) {
 
 exports.createReview = async function (req: Request, res: Response) {
   const review = new Review();
-  review.user = req.body.price
+  review.user = req.body.user
   review.stars = req.body.stars
   review.text = req.body.text
   res.json(await AppDataSource.getRepository(Review).save(review))

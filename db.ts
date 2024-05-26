@@ -6,6 +6,7 @@ import {Order} from './src/models/Order';
 import {Reservation} from './src/models/Reservation';
 import {User} from './src/models/User';
 import {OrderMenu} from './src/models/OrderMenu';
+import {Review} from './src/models/Review';
 
 export const AppDataSource = new DataSource({
   type: "mssql",
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   username: "admin",
   password: "password",
   database: "tariya-maze",
-  entities: [Discount, Menu, News, Order, OrderMenu, Reservation, User],
+  entities: [Discount, Menu, News, Order, OrderMenu, Reservation, Review, User],
   synchronize: true,
   options: {
     trustServerCertificate: true,
