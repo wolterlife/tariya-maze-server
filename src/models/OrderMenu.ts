@@ -13,7 +13,14 @@ export class OrderMenu {
   @ManyToOne(() => Order, (order) => order.id, {onDelete: 'CASCADE'})
   order: Order;
 
-  @OneToOne(() => Menu, (menu) => menu.item_id)
-  @JoinColumn()
-  item_id: Menu
+  @ManyToOne(() => Menu, (menu) => menu.id)
+  item_id: Menu;
+
+  // @OneToOne(() => Menu, (menu) => menu.item_id)
+  // @JoinColumn()
+  // item_id: Menu
+  /*
+  * Проблема с созданием дублирующего элемента меню в ордерМеню при создании заказа.
+  * Было исправлено, но теперь при добавлении блюда выводит ошибку. Были изменены связи в ордерменю и в меню
+  * */
 }

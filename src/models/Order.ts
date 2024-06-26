@@ -11,9 +11,6 @@ export class Order {
   price: number;
 
   @Column()
-  isActive: boolean;
-
-  @Column()
   date: string;
 
   @Column()
@@ -23,7 +20,10 @@ export class Order {
   comment: string;
 
   @Column()
-  isDiscount: boolean;
+  paymentValue: string;
+
+  @Column()
+  people: string;
 
   @ManyToOne(() => User, (user) => user.orders, {onDelete: 'CASCADE'})
   user: User;

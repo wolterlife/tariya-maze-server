@@ -24,12 +24,12 @@ exports.getOrdersByUserId = async function (req: Request, res: Response) {
 exports.createOrder = async function (req: Request, res: Response) {
   const order = new Order();
   order.price = req.body.price
-  order.isActive = true;
   order.date = req.body.date
   order.dest = req.body.dest
   order.comment = req.body.comment
-  order.isDiscount = req.body.isDiscount
   order.user = req.body.user
+  order.people = req.body.people
+  order.paymentValue = req.body.paymentValue
   res.json(await AppDataSource.getRepository(Order).save(order))
 }
 

@@ -1,4 +1,4 @@
-import {Column, Entity, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {OrderMenu} from './OrderMenu';
 
 @Entity()
@@ -21,6 +21,15 @@ export class Menu {
   @Column()
   imgLink: string;
 
-  @OneToOne(() => OrderMenu, (orderMenu) => orderMenu.item_id)
-  item_id: OrderMenu
+  @Column()
+  itemAdd: string;
+
+  @Column()
+  type: string;
+
+  @Column()
+  isDiscount: boolean;
+
+  @OneToMany(() => OrderMenu, (orderMenu) => orderMenu.item_id)
+  item_id: OrderMenu[]
 }

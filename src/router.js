@@ -55,5 +55,6 @@ router.post('/reviews', authMiddleware(["user"]), reviewController.createReview)
 router.get('/menu', menuController.getMenu);                                             //  GET все Блюда
 router.post('/menu', authMiddleware(["admin"]), menuController.createMenu)       //  POST Блюдо
 router.delete("/menu/:id", authMiddleware(["admin"]), menuController.deleteMenu) //  DELETE Блюдо
+router.put("/menu/:id", authMiddleware(["admin"]), menuController.updateMenu)    //  PUT Блюдо
 
 module.exports = router;

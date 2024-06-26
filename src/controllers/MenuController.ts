@@ -17,7 +17,24 @@ exports.createMenu = async function (req: Request, res: Response) {
   menu.val = req.body.val
   menu.description = req.body.description
   menu.imgLink = req.body.imgLink
+  menu.itemAdd = req.body.itemAdd
+  menu.type = req.body.type
+  menu.isDiscount = false
   res.json(await AppDataSource.getRepository(Menu).save(menu))
+}
+
+exports.updateMenu = async function (req: Request, res: Response) {
+  const menu = await AppDataSource
+    .getRepository(Menu)
+    .createQueryBuilder("menu")
+    .where("menu.id = :id", {id: req.params.id})
+    .getOne()
+  if (!menu) {
+    res.status(404).json({msg: "Указанное блюдо не найдено"})
+    return
+  }
+  menu.isDiscount = !menu.isDiscount
+  res.json(await AppDataSource.getRepository(Menu).save(menu));
 }
 
 exports.deleteMenu = async function (req: Request, res: Response) {

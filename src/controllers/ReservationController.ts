@@ -27,7 +27,6 @@ exports.createReservation = async function (req: Request, res: Response) {
   reservation.date = req.body.date
   reservation.time = req.body.time
   reservation.count = req.body.count
-  reservation.isActive = true;
   reservation.user = req.body.user
   res.json(await AppDataSource.getRepository(Reservation).save(reservation))
 }

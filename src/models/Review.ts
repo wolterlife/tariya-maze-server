@@ -9,7 +9,7 @@ export class Review {
   text: string;
 
   @Column()
-  user: number;
+  user: string;
 
   @Column()
   stars: number;

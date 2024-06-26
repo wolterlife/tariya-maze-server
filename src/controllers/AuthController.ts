@@ -18,7 +18,7 @@ exports.login = async function (req: Request, res: Response) {
   if (!user) return res.status(401).json({msg: `Пользователь ${req.body.login} не найден`})
 
   const isPassValid = bcrypt.compareSync(req.body.password, user.password);
-    const token = jwt.sign({id: user.id, roles: user.roles}, secretKey, {expiresIn: "24h"})
+    const token = jwt.sign({id: user.id, roles: user.roles}, secretKey)
     if (isPassValid) res.json({
       user: {
         id: user.id,

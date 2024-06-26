@@ -15,9 +15,6 @@ export class Reservation {
   @Column()
   count: number;
 
-  @Column()
-  isActive: boolean;
-
   @ManyToOne(() => User, (user) => user.reservations, {onDelete: 'CASCADE'})
   user: User;
 }
